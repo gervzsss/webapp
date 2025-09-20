@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products - Promise</title>
+  <link rel="stylesheet" href="./dist/styles.css" />
+</head>
+
+<body>
+  <!-- NAVBAR (same structure as home.html) -->
+  <nav class="navbar navbar-expand-lg navbar-dark my-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="#"><span>Pro</span>mise</a>
+      <button class="navbar-toggler" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">🛒 Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO (keeps same background and style as Home) -->
+  <header class="text-center text-white py-5 bg-dark"
+    style="background: url('images/background.jpg') center/cover no-repeat">
+    <div class="container">
+      <h1 class="display-4">
+        <b>Our <span>Products</span></b>
+      </h1>
+      <p class="lead">
+        Browse our curated collection of wedding attire — crafted for elegance,
+        comfort and timeless memories.
+      </p>
+    </div>
+  </header>
+
+  <!-- PRODUCTS: sidebar + content inspired by reference layout but aligned with Home Page -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <!-- Sidebar (filters) -->
+        <aside class="col-lg-3 mb-4">
+          <div class="p-3 bg-dark text-white rounded-3 sticky-sidebar">
+            <h5 class="mb-3">FILTERS</h5>
+            <div class="mb-3">
+              <label class="form-label">Search</label>
+              <input id="searchInput" class="form-control form-control-sm" placeholder="Search products..." />
+            </div>
+
+            <h6 class="mb-2">Category</h6>
+            <div class="mb-3" id="filterCategories">
+              <div class="form-check"><input class="form-check-input cat" type="checkbox" value="Women"
+                  id="catWomen"><label class="form-check-label" for="catWomen">Women</label></div>
+              <div class="form-check"><input class="form-check-input cat" type="checkbox" value="Men" id="catMen"><label
+                  class="form-check-label" for="catMen">Men</label></div>
+              <div class="form-check"><input class="form-check-input cat" type="checkbox" value="Kids"
+                  id="catKids"><label class="form-check-label" for="catKids">Kids</label></div>
+              <div class="form-check"><input class="form-check-input cat" type="checkbox" value="Accessories"
+                  id="catAcc"><label class="form-check-label" for="catAcc">Accessories</label></div>
+            </div>
+
+            <h6 class="mb-2">Price</h6>
+            <div class="mb-3">
+              <input id="priceRange" type="range" class="form-range" min="0" max="1000" value="1000" />
+              <div class="text-muted">Up to: $<span id="priceVal">1000</span></div>
+            </div>
+
+            <h6 class="mb-2">Rating</h6>
+            <div class="mb-3">
+              <select id="ratingFilter" class="form-select form-select-sm">
+                <option value="0">Any</option>
+                <option value="4">4 stars & up</option>
+                <option value="3">3 stars & up</option>
+                <option value="2">2 stars & up</option>
+              </select>
+            </div>
+
+            <div class="d-grid mt-3">
+              <button id="clearFilters" class="btn btn-outline-light btn-sm">Clear filters</button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main content -->
+        <div class="col-lg-9">
+          <div class="filter-topbar d-none d-lg-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex gap-2 align-items-center">
+              <button id="gridViewBtn" class="btn btn-outline-light btn-sm">Grid</button>
+              <button id="listViewBtn" class="btn btn-outline-light btn-sm">List</button>
+            </div>
+            <div class="d-flex gap-2 align-items-center">
+              <label class="me-2 text-muted">SORT</label>
+              <select id="sortSelect" class="form-select form-select-sm">
+                <option value="newest">Newest</option>
+                <option value="popular">Popular</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating">Best Rated</option>
+              </select>
+            </div>
+          </div>
+
+          <h2 class="text-center mb-4">All Products</h2>
+
+          <!-- products grid (rendered by JS) -->
+          <div id="productsContainer" class="products-grid">
+            <!-- skeleton placeholders rendered by JS during load -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- quick-view overlay -->
+  <div id="quickView" class="quick-view-overlay" aria-hidden="true">
+    <div class="quick-view-card">
+      <div class="quick-view-media">
+        <img id="qvImg" src="" alt="" />
+      </div>
+      <div class="quick-view-body">
+        <button id="qvClose" class="quick-view-close">×</button>
+        <h3 id="qvTitle"></h3>
+        <p id="qvPrice" class="price"></p>
+        <p id="qvDesc" class="meta"></p>
+        <div class="mt-3">
+          <button id="qvAdd" class="btn btn-cart">Add to Cart</button>
+          <button id="qvWishlist" class="btn btn-outline-light ms-2">♡ Wishlist</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/products.js" defer></script>
+
+  <!-- FOOTER (same as home.html) -->
+  <footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">
+      © 2025 <span>Pro</span>mise | Designed for loving couple
+    </p>
+  </footer>
+</body>
+
+</html>
