@@ -56,6 +56,30 @@
 
     function formatPrice(n) { return '$' + Number(n).toFixed(2); }
 
+    /* Cart integration (localStorage) */
+    const CART_KEY = 'prototype_cart_v1';
+    function loadCart() { try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch (e) { return []; } }
+    function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+    function addToCart(p, qty = 1) {
+        const cart = loadCart();
+        const idx = cart.findIndex(c => c.id === p.id);
+        if (idx > -1) { cart[idx].qty = (cart[idx].qty || 0) + qty; }
+        else { cart.push({ id: p.id, title: p.title, price: p.price, qty: qty, img: p.img, meta: p.category }); }
+        saveCart(cart);
+        showToast(`${p.title} added to cart`);
+    }
+
+    function showToast(text) {
+        const t = document.createElement('div');
+        t.className = 'alert-success';
+        t.textContent = text;
+        Object.assign(t.style, { position: 'fixed', right: '18px', bottom: '18px', zIndex: 4000, opacity: '0', transition: 'opacity .2s ease' });
+        document.body.appendChild(t);
+        // force reflow
+        void t.offsetWidth; t.style.opacity = '1';
+        setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 1500);
+    }
+
     function saveWishlist() {
         localStorage.setItem('wishlist', JSON.stringify(Array.from(state.wishlist)));
     }
@@ -107,6 +131,9 @@
             const price = document.createElement('div'); price.className = 'price'; price.textContent = formatPrice(p.price);
             const meta = document.createElement('div'); meta.className = 'meta'; meta.textContent = `${p.category} • ${p.rating} ★`;
             const add = document.createElement('button'); add.className = 'btn btn-cart w-100 mt-2'; add.textContent = 'Add to Cart';
+
+            // wire add-to-cart
+            add.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); addToCart(p, 1); });
 
             body.appendChild(title); body.appendChild(price); body.appendChild(meta); body.appendChild(add);
 
@@ -224,6 +251,9 @@
             if (state.wishlist.has(activeQV.id)) state.wishlist.delete(activeQV.id); else state.wishlist.add(activeQV.id);
             saveWishlist();
         });
+
+        // add to cart from quickview
+        qvAdd.addEventListener('click', () => { if (!activeQV) return; addToCart(activeQV, 1); closeQuickView(); });
     }
 
     // init
