@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cart - Promise</title>
     <link rel="stylesheet" href="./dist/styles.css" />
-    <style>
-        /* small inline for layout safety; main styles live in styles.css */
-    </style>
 </head>
 
 <body>
@@ -30,11 +27,17 @@
     <main class="py-5">
         <div class="container">
             <h2 class="text-center mb-4">Your Cart</h2>
-            <div class="row">
-                <div class="col-lg-8 mb-4">
-                    <div class="cart-list">
-                        <!-- cart item -->
-                        <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3">
+                    <div class="row">
+                        <div class="col-lg-8 mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="form-check me-2">
+                                    <input id="selectAll" class="form-check-input" type="checkbox" />
+                                </div>
+                                <div class="fs-sm text-muted">Select All</div>
+                            </div>
+                            <div id="cartList" class="cart-list">
+                                <!-- cart item -->
+                                <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3" data-id="1">
                             <div class="cart-media me-3">
                                 <img src="images/wedding dress.jpg" alt="Elegant Wedding Dress" />
                             </div>
@@ -45,8 +48,7 @@
                                     <div class="price">$200.00</div>
                                     <div class="quantity">
                                         <label class="visually-hidden">Quantity</label>
-                                        <input class="form-control form-control-sm qty" type="number" min="1" value="1"
-                                            style="width:72px;" />
+                                        <input class="form-control form-control-sm qty qty-input" type="number" min="1" value="1" />
                                     </div>
                                     <div class="subtotal ms-auto fw-bold">$200.00</div>
                                     <button class="btn btn-outline-light btn-sm ms-2">Remove</button>
@@ -55,7 +57,7 @@
                         </div>
 
                         <!-- cart item -->
-                        <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3">
+                        <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3" data-id="2">
                             <div class="cart-media me-3">
                                 <img src="images/Pretty ball gown wedding dresses.jpg" alt="Pretty Ball Gown" />
                             </div>
@@ -66,8 +68,7 @@
                                     <div class="price">$150.00</div>
                                     <div class="quantity">
                                         <label class="visually-hidden">Quantity</label>
-                                        <input class="form-control form-control-sm qty" type="number" min="1" value="2"
-                                            style="width:72px;" />
+                                        <input class="form-control form-control-sm qty qty-input" type="number" min="1" value="2" />
                                     </div>
                                     <div class="subtotal ms-auto fw-bold">$300.00</div>
                                     <button class="btn btn-outline-light btn-sm ms-2">Remove</button>
@@ -76,7 +77,7 @@
                         </div>
 
                         <!-- cart item -->
-                        <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3">
+                        <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3" data-id="3">
                             <div class="cart-media me-3">
                                 <img src="images/Groom Wear For Indian Wedding Indian Wedding Sherwani For Groom.jpg"
                                     alt="Groom Sherwani" />
@@ -88,15 +89,14 @@
                                     <div class="price">$199.00</div>
                                     <div class="quantity">
                                         <label class="visually-hidden">Quantity</label>
-                                        <input class="form-control form-control-sm qty" type="number" min="1" value="1"
-                                            style="width:72px;" />
+                                        <input class="form-control form-control-sm qty qty-input" type="number" min="1" value="1" />
                                     </div>
                                     <div class="subtotal ms-auto fw-bold">$199.00</div>
                                     <button class="btn btn-outline-light btn-sm ms-2">Remove</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                                </div>
                     <div class="mt-3">
                         <a href="/products.html" class="btn btn-outline-light btn-sm">Continue Shopping</a>
                     </div>
@@ -131,6 +131,8 @@
         <p class="mb-0">© 2025 <span>Pro</span>mise | Designed for loving couple</p>
     </footer>
 
+    <!-- toast container (toasts inserted here) -->
+    <div id="toastContainer"></div>
     <script src="scripts/cart.js" defer></script>
 </body>
 

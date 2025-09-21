@@ -462,6 +462,35 @@ body {
   width: 100%;
 }
 
+.cart-item.selected {
+  box-shadow: 0 6px 18px rgba(255, 180, 60, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid rgba(255, 180, 60, 0.12);
+}
+
+.form-check {
+  width: 36px;
+  flex: 0 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-item {
+  width: 18px;
+  height: 18px;
+}
+
+.order-summary.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+#checkoutBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 @media (max-width: 991px) {
   .cart-media img {
     width: 100px;
@@ -471,4 +500,48 @@ body {
   .order-summary {
     margin-top: 1rem;
   }
+}
+
+/* Cart input sizing moved from inline styles */
+.qty-input {
+  width: 72px;
+}
+
+/* Toast container and toast styles (no inline styles) */
+#toastContainer {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1200;
+  pointer-events: none;
+}
+
+.toast-notice {
+  pointer-events: auto;
+  display: inline-block;
+  background: linear-gradient(45deg, rgba(255,140,0,0.98), rgba(255,193,7,0.98));
+  color: #111;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(255,140,0,0.12);
+  margin-top: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .32s ease, transform .32s ease;
+  font-size: 0.95rem;
+}
+
+.toast-notice.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modal inner wrapper uses existing quick-view-body; success fragment uses the same class */
+.quick-view-body {
+  padding: 1.25rem;
+}
+
+/* ensure cart-item selected transition is smooth */
+.cart-item.selected {
+  transition: box-shadow .22s ease, background .22s ease, border-left-color .22s ease;
 }
