@@ -52,24 +52,58 @@ What to avoid
 - Don't edit `dist/styles.css` by hand. Changes should be made in `styles.css` and compiled.
 - Avoid adding new package.json scripts or dependencies unless necessary; when you do, leave a short rationale in the commit/PR.
 
-Testing, build & debugging tips
-- Build CSS locally: `npm run build:css`. On Windows PowerShell use exactly that command.
-- Watch during edits: `npm run watch:css` (recommended while working on styles).
-- Debugging JS: open the browser DevTools console on `products.html` to inspect `scripts/products.js` behavior and localStorage wishlist.
+<!--
+Repository-specific guidance for AI coding agents working on this static storefront.
+Updated: 2025-09-22
+-->
 
-Pull request guidance (repo-specific)
-- Keep PRs small and focused: one visual or one behavioral change per PR.
-- Include before/after screenshots for CSS/visual changes.
-- If adding or renaming images, update references in HTML/JS and prefer URL-safe filenames (replace spaces with dashes) unless the maintainer says otherwise.
+# Copilot instructions — webapp (static storefront)
 
-Search tips (where things live)
-- Styles: `styles.css`
-- Generated CSS: `dist/styles.css`
-- Product logic: `scripts/products.js` (rendering, filtering, wishlist)
-- Page entry points: `home.html`, `products.html`
+This is a small, intentionally static Bootstrap storefront. The site pages are plain HTML and styles are authored in `styles.css` and compiled into `dist/styles.css` with PostCSS. JavaScript is vanilla and split per-page under `scripts/`.
 
-If unclear, ask the maintainer about
-- Preferred image filename policy (spaces vs dashes).
-- Whether adding build steps or client-side dependencies (CDN vs npm) is acceptable.
+What matters (quick)
+- Entry pages: `home.html`, `products.html`, `cart.html`, `about.html`.
+- Styles: source is `styles.css`. Never edit `dist/styles.css` directly — run `npm run build:css` to regenerate.
+- JS: `scripts/products.js`, `scripts/cart.js`, `scripts/about.js` — all dependency-free, browser-first code.
 
-End of instructions.
+Local build & dev
+- npm scripts in `package.json`:
+  - `npm run build:css` — compile `styles.css` → `dist/styles.css` (PostCSS + autoprefixer).
+  - `npm run watch:css` — watch and rebuild on change.
+
+Key patterns & conventions (project-specific)
+- Single CSS entry: edit `styles.css` (global rules, components, and page-specific sections live here). Keep selectors scoped where appropriate (e.g., `.cart-list .form-check`).
+- Vanilla JS modules: keep behavior in `scripts/*.js`. Prefer small, focused changes; reuse DOM containers already used by the renderer (for example `#productsContainer`, `#cartList`, `#quickView`).
+- Persistence keys: localStorage is used for client-side demo state. Important keys:
+  - `prototype_cart_v1` — cart contents (array of {id,title,price,qty,img,meta}).
+  - `wishlist` — wishlist state (array of ids).
+- No backend assumption: features like contact forms or checkout are mock/demo only unless the maintainer requests a backend integration.
+
+Files to inspect first (fast-trace)
+- `styles.css` — style patterns, variables, and important component classes (product cards, quick-view, cart, toasts).
+- `products.html` + `scripts/products.js` — product data, renderer, filters, quick-view, wishlist, add-to-cart integration.
+- `cart.html` + `scripts/cart.js` — cart rendering, qty/remove, select-for-checkout, checkout modal, and localStorage persistence.
+
+Behavioral conventions and gotchas
+- Keep UI changes Bootstrap-friendly: prefer utilities + small component classes rather than big framework shifts.
+- Image filenames sometimes contain spaces (e.g., `wedding dress.jpg`). Preserve exact filenames when editing references or rename both file and usages.
+- Avoid global CSS overrides; scope changes carefully to avoid breaking other pages (we use global `styles.css` but prefer scoped rules like `.sticky-sidebar` or `.cart-list`).
+- Modals and toasts are DOM-inserted by JS; style them in `styles.css` (no inline styles) and use classes like `.quick-view-overlay`, `.quick-view-card`, `.toast-notice`.
+
+Quick-edit checklist (for common tasks)
+- Add/modify styles: edit `styles.css` → run `npm run build:css` → test `products.html` / `home.html`.
+- Add a new product image: place in `images/` and update the product data in `scripts/products.js` (or add a JSON data file and modify the loader).
+- Tweak product rendering: update `scripts/products.js` and keep the same container markup so filters and quick-view keep working.
+
+Debugging & validation
+- Use the browser DevTools console on the target page (`products.html`, `cart.html`) to inspect runtime state (localStorage keys listed above) and JS errors.
+- After style edits, confirm `dist/styles.css` was updated and the page loads the new CSS.
+
+PR & collaboration rules
+- Keep PRs focused and small; visual changes should include before/after screenshots.
+- When adding a dependency or changing the build chain, add a short rationale in the PR body.
+
+If anything is unclear
+- Ask the maintainer about image filename policy (spaces vs dashes), and whether adding runtime dependencies or additional build steps is acceptable.
+
+End of repo instructions.

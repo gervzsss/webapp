@@ -58,18 +58,18 @@
 
     /* Cart integration (localStorage) */
     const CART_KEY = 'prototype_cart_v1';
-    function loadCart(){ try{ return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch(e){ return []; } }
-    function saveCart(cart){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
-    function addToCart(p, qty = 1){
+    function loadCart() { try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); } catch (e) { return []; } }
+    function saveCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+    function addToCart(p, qty = 1) {
         const cart = loadCart();
         const idx = cart.findIndex(c => c.id === p.id);
-        if (idx > -1){ cart[idx].qty = (cart[idx].qty || 0) + qty; }
+        if (idx > -1) { cart[idx].qty = (cart[idx].qty || 0) + qty; }
         else { cart.push({ id: p.id, title: p.title, price: p.price, qty: qty, img: p.img, meta: p.category }); }
         saveCart(cart);
         showToast(`${p.title} added to cart`);
     }
 
-    function showToast(text){
+    function showToast(text) {
         const t = document.createElement('div');
         t.className = 'alert-success';
         t.textContent = text;
@@ -77,7 +77,7 @@
         document.body.appendChild(t);
         // force reflow
         void t.offsetWidth; t.style.opacity = '1';
-        setTimeout(()=>{ t.style.opacity = '0'; setTimeout(()=> t.remove(), 300); }, 1500);
+        setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 1500);
     }
 
     function saveWishlist() {
@@ -133,7 +133,7 @@
             const add = document.createElement('button'); add.className = 'btn btn-cart w-100 mt-2'; add.textContent = 'Add to Cart';
 
             // wire add-to-cart
-            add.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); addToCart(p, 1); });
+            add.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); addToCart(p, 1); });
 
             body.appendChild(title); body.appendChild(price); body.appendChild(meta); body.appendChild(add);
 
@@ -253,7 +253,7 @@
         });
 
         // add to cart from quickview
-        qvAdd.addEventListener('click', ()=>{ if (!activeQV) return; addToCart(activeQV, 1); closeQuickView(); });
+        qvAdd.addEventListener('click', () => { if (!activeQV) return; addToCart(activeQV, 1); closeQuickView(); });
     }
 
     // init

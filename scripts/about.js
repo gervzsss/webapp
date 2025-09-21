@@ -42,12 +42,5 @@
         }, 900);
     });
 
-    // simple reveal animation for about text and banner
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.about-text, .about-banner, .about-hero h1, .about-hero p').forEach((el, i) => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(6px)';
-            setTimeout(() => { el.style.transition = 'opacity .6s ease, transform .6s ease'; el.style.opacity = 1; el.style.transform = 'translateY(0)'; }, 120 * i);
-        });
-    });
+    // reveal animation moved to scripts/reveal.js (shared across pages)
 })();
