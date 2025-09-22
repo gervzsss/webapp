@@ -1,150 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Promise</title>
+    <link rel="stylesheet" href="./dist/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About - Promise</title>
-  <link rel="stylesheet" href="./dist/styles.css" />
-</head>
-
-<body>
-  <!-- NAVBAR (same structure as home.html) -->
-  <nav class="navbar navbar-expand-lg navbar-dark my-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="/home.html"><span>Pro</span>mise</a>
-      <button class="navbar-toggler" type="button">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="/home.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/products.html">Products</a></li>
-          <li class="nav-item"><a class="nav-link active" href="/about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="/cart.html">🛒 Cart</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <header class="text-center text-white py-5 bg-dark about-hero"
-    style="background: url('images/background.jpg') center/cover no-repeat">
-    <div class="container">
-      <h1 class="display-4">
-        <b>About <span>Promise</span></b>
-      </h1>
-      <p class="lead">
-        Crafting memorable looks for your most important day — with care, heritage, and modern
-        tailoring.</p>
-    </div>
-  </header>
-
-  <main class="py-5">
-    <div class="container">
-      <div class="row align-items-center mb-5">
-        <div class="col-md-6">
-          <h2 class="mb-3">Our Story</h2>
-          <p class="lead about-text">Promise was founded to bring beautifully crafted wedding attire to
-            couples who want timeless elegance with modern comfort. We blend artisanal techniques with
-            carefully chosen fabrics, focusing on fit, detail and sustainable practices. Our mission is to
-            make every couple feel confident and celebrated.</p>
-
-          <ul class="list-unstyled mt-3">
-            <li><strong>Mission:</strong> Timeless design with exceptional craftsmanship.</li>
-            <li><strong>Values:</strong> Integrity, quality, and compassionate service.</li>
-            <li><strong>What makes us unique:</strong> Personalized fittings, curated fabrics, and
-              small-batch production.</li>
+  <body>
+    <!-- NAVBAR (same structure as home.html) -->
+    <nav class="navbar navbar-expand-lg navbar-dark my-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/home.html"><span>Pro</span>mise</a>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/home.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cart.html">🛒 Cart</a>
+            </li>
           </ul>
         </div>
-
-        <div class="col-md-6">
-          <div class="about-banner rounded-3 overflow-hidden">
-            <img src="images/Pretty ball gown wedding dresses.jpg" alt="Team / Founder" />
-          </div>
-        </div>
       </div>
+    </nav>
 
-      <div class="row mb-5">
-        <div class="col-12">
-          <h3 class="mb-3">Our Process</h3>
-          <p class="about-text">From initial design sketches to the final fitting, our process centers on
-            collaboration. We consult closely with you to select fabrics, refine silhouettes, and ensure
-            your dress or suit reflects your vision. Small production runs allow for careful quality control
-            at every stage.</p>
-        </div>
+    <!-- HERO -->
+    <header
+      class="text-center text-white py-5 bg-dark about-hero"
+      style="background: url('images/background.jpg') center/cover no-repeat"
+    >
+      <div class="container">
+        <h1 class="display-4">
+          <b>About <span>Promise</span></b>
+        </h1>
+        <p class="lead">
+          Crafting memorable looks for your most important day — with care,
+          heritage, and modern tailoring.
+        </p>
       </div>
+    </header>
 
-      <!-- Contact section -->
-      <section id="contact" class="py-4 bg-dark rounded-3 p-4 text-white">
-        <div class="row">
-          <div class="col-lg-6 mb-4">
-            <h3>Contact Us</h3>
-            <p class="mb-3">Have questions or want to schedule a fitting? Send us a message and we'll get
-              back to you within 48 hours.</p>
+    <main class="py-5">
+      <div class="container">
+        <div class="row align-items-center mb-5">
+          <div class="col-md-6">
+            <h2 class="mb-3">Our Story</h2>
+            <p class="lead about-text">
+              Promise was founded to bring beautifully crafted wedding attire to
+              couples who want timeless elegance with modern comfort. We blend
+              artisanal techniques with carefully chosen fabrics, focusing on
+              fit, detail and sustainable practices. Our mission is to make
+              every couple feel confident and celebrated.
+            </p>
 
-            <form id="contactForm" novalidate>
-              <div class="mb-2">
-                <label class="form-label">Name</label>
-                <input id="cName" type="text" class="form-control form-control-sm" required />
-                <div class="invalid-feedback">Please enter your name.</div>
-              </div>
-
-              <div class="mb-2">
-                <label class="form-label">Email</label>
-                <input id="cEmail" type="email" class="form-control form-control-sm" required />
-                <div class="invalid-feedback">Please enter a valid email.</div>
-              </div>
-
-              <div class="mb-2">
-                <label class="form-label">Subject</label>
-                <input id="cSubject" type="text" class="form-control form-control-sm" />
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">Message</label>
-                <textarea id="cMessage" rows="4" class="form-control form-control-sm" required></textarea>
-                <div class="invalid-feedback">Please enter a message.</div>
-              </div>
-
-              <div class="d-grid">
-                <button id="cSubmit" class="btn btn-cart">Send Message</button>
-              </div>
-
-              <div id="cAlert" class="mt-3" role="status" aria-live="polite"></div>
-            </form>
+            <ul class="list-unstyled mt-3">
+              <li>
+                <strong>Mission:</strong> Timeless design with exceptional
+                craftsmanship.
+              </li>
+              <li>
+                <strong>Values:</strong> Integrity, quality, and compassionate
+                service.
+              </li>
+              <li>
+                <strong>What makes us unique:</strong> Personalized fittings,
+                curated fabrics, and small-batch production.
+              </li>
+            </ul>
           </div>
 
-          <div class="col-lg-6">
-            <h4>Visit or write to us</h4>
-            <p class="mb-1">Promise Atelier</p>
-            <p class="mb-1">0321 December Avenue</p>
-            <p class="mb-1">Philippines, Earth</p>
-            <p class="mb-1">Email: <a href="mailto:hello@promise.example">regine&gervs@email.com</a></p>
-            <p class="mb-1">Phone: <a href="tel:+1234567890">+63 912 123 4567</a></p>
-
-            <div class="mt-3">
-              <h5>Follow us</h5>
-              <a href="#" class="me-2 text-white">Instagram</a>
-              <a href="#" class="me-2 text-white">Facebook</a>
-              <a href="#" class="text-white">Pinterest</a>
-            </div>
-
-            <div class="mt-4 map-placeholder bg-black rounded-2 text-center p-3">
-              <small>Map placeholder — embed Google Maps here or add a static image.</small>
+          <div class="col-md-6">
+            <div class="about-banner rounded-3 overflow-hidden">
+              <img
+                src="images/Pretty ball gown wedding dresses.jpg"
+                alt="Team / Founder"
+              />
             </div>
           </div>
         </div>
-      </section>
-    </div>
-  </main>
 
-  <footer class="bg-dark text-white text-center py-3">
-    <p class="mb-0">© 2025 <span>Pro</span>mise | Designed for loving couple</p>
-  </footer>
+        <div class="row mb-5">
+          <div class="col-12">
+            <h3 class="mb-3">Our Process</h3>
+            <p class="about-text">
+              From initial design sketches to the final fitting, our process
+              centers on collaboration. We consult closely with you to select
+              fabrics, refine silhouettes, and ensure your dress or suit
+              reflects your vision. Small production runs allow for careful
+              quality control at every stage.
+            </p>
+          </div>
+        </div>
 
-  <script src="scripts/about.js" defer></script>
-  <script src="scripts/reveal.js" defer></script>
-</body>
+        <!-- Contact section -->
+        <section id="contact" class="py-4 bg-dark rounded-3 p-4 text-white">
+          <div class="row">
+            <div class="col-lg-6 mb-4">
+              <h3>Contact Us</h3>
+              <p class="mb-3">
+                Have questions or want to schedule a fitting? Send us a message
+                and we'll get back to you within 48 hours.
+              </p>
 
+              <form id="contactForm" novalidate>
+                <div class="mb-2">
+                  <label class="form-label">Name</label>
+                  <input
+                    id="cName"
+                    type="text"
+                    class="form-control form-control-sm"
+                    required
+                  />
+                  <div class="invalid-feedback">Please enter your name.</div>
+                </div>
+
+                <div class="mb-2">
+                  <label class="form-label">Email</label>
+                  <input
+                    id="cEmail"
+                    type="email"
+                    class="form-control form-control-sm"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid email.
+                  </div>
+                </div>
+
+                <div class="mb-2">
+                  <label class="form-label">Subject</label>
+                  <input
+                    id="cSubject"
+                    type="text"
+                    class="form-control form-control-sm"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Message</label>
+                  <textarea
+                    id="cMessage"
+                    rows="4"
+                    class="form-control form-control-sm"
+                    required
+                  ></textarea>
+                  <div class="invalid-feedback">Please enter a message.</div>
+                </div>
+
+                <div class="d-grid">
+                  <button id="cSubmit" class="btn btn-cart">
+                    Send Message
+                  </button>
+                </div>
+
+                <div
+                  id="cAlert"
+                  class="mt-3"
+                  role="status"
+                  aria-live="polite"
+                ></div>
+              </form>
+            </div>
+
+            <div class="col-lg-6">
+              <h4>Visit or write to us</h4>
+              <p class="mb-1">Promise Atelier</p>
+              <p class="mb-1">0321 December Avenue</p>
+              <p class="mb-1">Philippines, Earth</p>
+              <p class="mb-1">
+                Email:
+                <a href="mailto:hello@promise.example"
+                  >regine&gervs@email.com</a
+                >
+              </p>
+              <p class="mb-1">
+                Phone: <a href="tel:+1234567890">+63 912 123 4567</a>
+              </p>
+
+              <div class="social-menu">
+                <h5>Follow us</h5>
+                <ul>
+                  <li>
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                  </li>
+                  <li>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                  </li>
+                  <li>
+                    <a href=""><i class="fa-brands fa-github"></i></a>
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="mt-4 map-placeholder bg-black rounded-2 text-center p-3"
+              >
+                <small
+                  >Map placeholder — embed Google Maps here or add a static
+                  image.</small
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3">
+      <p class="mb-0">
+        © 2025 <span>Pro</span>mise | Designed for loving couple
+      </p>
+    </footer>
+
+    <script src="scripts/about.js" defer></script>
+    <script src="scripts/reveal.js" defer></script>
+  </body>
 </html>
