@@ -20,6 +20,9 @@
 
   function saveCart(cart) { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); }
 
+  // dispatch helper to notify badge and other UI parts
+  function notifyCartUpdated() { try { window.dispatchEvent(new Event('cart:updated')); } catch (e) { } }
+
   function formatPrice(n) { return '$' + Number(n).toFixed(2); }
 
   // render
@@ -78,6 +81,7 @@
     summaryShipping.textContent = formatPrice(shipping);
     summaryTotal.textContent = formatPrice(subtotal + shipping);
     saveCart(cart);
+    notifyCartUpdated();
   }
 
   // compute totals for only selected items and update the order summary UI + checkout button state
@@ -168,6 +172,8 @@
       itemEl.style.transition = 'opacity .24s ease, height .24s ease, margin .24s ease';
       itemEl.style.opacity = 0; itemEl.style.height = 0; itemEl.style.margin = 0;
       setTimeout(() => { render(); }, 260);
+      // update badge
+      notifyCartUpdated();
     }));
 
     // checkout modal
@@ -217,7 +223,7 @@
       // show success and close modal, then re-render the page cart to show remaining items
       const count = selectedIds.length;
       modal.querySelector('.quick-view-card').innerHTML = `<div class="quick-view-body"><h4>Checkout successful</h4><p>${count} item(s) were checked out.</p><div class="mt-3"><button id="closeOk" class="btn btn-cart">Close</button></div></div>`;
-      document.getElementById('closeOk').addEventListener('click', () => { modal.remove(); render(); if (count) showToast(`${count} item(s) have been checked out`); });
+      document.getElementById('closeOk').addEventListener('click', () => { modal.remove(); render(); if (count) showToast(`${count} item(s) have been checked out`); notifyCartUpdated(); });
     });
   }
 

@@ -262,6 +262,8 @@
   }
   function saveCart(cart) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    // notify other parts of the UI that the cart changed
+    try { window.dispatchEvent(new Event('cart:updated')); } catch (e) { }
   }
   function addToCart(p, qty = 1) {
     const cart = loadCart();

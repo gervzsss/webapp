@@ -129,6 +129,61 @@ body {
   color: #ff8c00;
 }
 
+/* Cart badge (top-right of cart icon) */
+.cart-link {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: linear-gradient(45deg, #ff6a00, #ffc107);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(255, 140, 0, 0.28);
+  transform-origin: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 260ms cubic-bezier(.2, .9, .3, 1), opacity 220ms ease, box-shadow 220ms ease;
+}
+
+.cart-badge.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cart-badge.pulse {
+  animation: cart-badge-pulse 420ms ease;
+}
+
+@keyframes cart-badge-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 6px 18px rgba(255, 140, 0, 0.28);
+  }
+
+  40% {
+    transform: scale(1.18);
+    box-shadow: 0 10px 26px rgba(255, 140, 0, 0.5);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 6px 18px rgba(255, 140, 0, 0.28);
+  }
+}
+
 /* Products page additions */
 /* Grid + product card */
 .products-grid {
@@ -472,6 +527,72 @@ body {
 .map-placeholder {
   min-height: 120px;
   color: #cfcfcf;
+}
+
+/* Responsive map image inside about page */
+.map-placeholder img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 767px) {
+  .map-placeholder img {
+    max-height: 220px;
+  }
+}
+
+/* Lightweight image lightbox */
+.map-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4000;
+  padding: 1.25rem;
+  /* start hidden but present so we can animate opacity/transform */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 320ms ease, visibility 320ms ease;
+}
+
+.map-lightbox.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.map-lightbox img {
+  max-width: 100%;
+  max-height: 92vh;
+  border-radius: 6px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.7);
+  transform: scale(0.96);
+  transition: transform 360ms cubic-bezier(.2, .9, .3, 1), opacity 320ms ease;
+  opacity: 0;
+}
+
+.map-lightbox.open img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.map-lightbox .close-x {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  transition: opacity 200ms ease, transform 200ms ease;
 }
 
 /* social media */
