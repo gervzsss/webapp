@@ -135,6 +135,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.25rem;
+  color: #ff8c00;
 }
 
 .product-card {
@@ -188,6 +189,28 @@ body {
 .product-card .meta {
   font-size: 0.9rem;
   color: #cfcfcf;
+}
+/* grid and list button */
+.d-flex.gap-2.align-items-center {
+  justify-content: center;
+  margin-top: 20px;
+  border-color: #e74c3c;
+}
+#gridViewBtn,
+#listViewBtn {
+  border-radius: 10px; /* make buttons rounded */
+  font-weight: bold; /* bold text */
+  padding: 5px 15px; /* adjust button size */
+  transition: 0.3s ease; /* smooth hover effect */
+  border-color: #ffc107;
+}
+
+#gridViewBtn:hover,
+#listViewBtn:hover {
+  background-color: #ff8c00;
+  color: white;
+  border-color: #ff8c00;
+  box-shadow: 0 0 10px #ff8c00;
 }
 
 /* quick action buttons */
@@ -381,6 +404,26 @@ body {
 }
 
 /* About page styles */
+.container .about {
+  color: #f5f5f5;
+  max-width: 700;
+  font-family: "Great Vibes";
+  animation: animate 1s ease-in-out infinite alternate;
+  font-size: 80px;
+}
+
+.container .about span {
+  color: #ffc107;
+  max-width: 700;
+  font-family: "Great Vibes";
+}
+.container .Crafting {
+  font-size: 25px;
+  max-width: 100;
+  color: #f5f5f5;
+  font-family: "comorant";
+}
+
 .about-hero {
   background-attachment: scroll;
   padding-top: 4.5rem;
@@ -398,6 +441,19 @@ body {
   color: #ffdca6;
   font-size: 1.15rem;
 }
+.py-5 .story {
+  color: #eee;
+  max-width: bold;
+}
+.process {
+  color: #eee;
+  font-weight: bolder;
+  font-size: 30px;
+  font-family: sans-serif;
+}
+.py-5 ul li {
+  color: #eee;
+}
 
 .about-banner img {
   width: 100%;
@@ -408,6 +464,7 @@ body {
 
 .about-text {
   color: #e9e6e6;
+  text-indent: 40px;
 }
 
 .map-placeholder {
@@ -415,16 +472,27 @@ body {
   color: #cfcfcf;
 }
 /* social media */
+.follow-us {
+  position: relative;
+  top: 20px;
+}
 
 .social-menu {
   position: relative;
-  top: 20%;
-  left: 50%;
+  top: -1%;
+  left: 20%;
   padding: 0;
   margin: 0;
   transform: translate(-50%, -50%);
   display: flex;
+  flex-direction: row-reverse;
 }
+.social-menu ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
 .social-menu ul li {
   list-style: none;
   margin: 0 15px;
@@ -433,7 +501,7 @@ body {
   font-size: 30px;
   line-height: 40px;
   transition: 6s;
-  color: black;
+  color: white;
 }
 
 .social-menu ul li a {
@@ -443,14 +511,16 @@ body {
   height: 40px;
   text-align: center;
   border-radius: 50px;
-  background-color: #ff8c00;
   animation: animate 1s ease-in-out infinite alternate;
-  margin-top: 20px;
+  margin-top: 40px; /* map palce holder */
   transition: 0.6s;
   box-shadow: 0 5px 4px rgba(0, 0, 0, 0.5);
 }
 .social-menu ul li a:hover {
   transform: translate(0, -10px);
+}
+.social-menu ul .fa-facebook {
+  color: white;
 }
 .social-menu ul li:nth-child(1) a:hover {
   background-color: #1877f2;
@@ -459,7 +529,7 @@ body {
   background-color: #e4405f;
 }
 .social-menu ul li:nth-child(3) a:hover {
-  background-color: white;
+  background-color: purple;
 }
 
 /* contact form */
