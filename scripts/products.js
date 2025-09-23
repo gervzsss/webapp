@@ -1,6 +1,3 @@
-// Lightweight products renderer and UI interactions
-// Features: product array, render grid, search, filters, sort, skeletons, quick-view, wishlist (localStorage)
-
 (function () {
   // sample product data — map to available images in /images
   const PRODUCTS = [

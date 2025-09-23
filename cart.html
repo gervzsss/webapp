@@ -1,195 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cart - Promise</title>
-    <link rel="stylesheet" href="./dist/styles.css" />
-  </head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark my-navbar">
-      <div class="container">
-        <a class="navbar-brand" href="/home.html"><span>Pro</span>mise</a>
-        <button class="navbar-toggler" type="button">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/home.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/products.html">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/cart.html">🛒 Cart</a>
-            </li>
-          </ul>
-        </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cart - Promise</title>
+  <link rel="stylesheet" href="./dist/styles.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark my-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="/home.html"><span>Pro</span>mise</a>
+      <button class="navbar-toggler" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/products.html">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cart.html">🛒 Cart</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <main class="py-5">
-      <div class="container">
-        <h2 class="text-center mb-4">Your Cart</h2>
-        <div class="row">
-          <div class="col-lg-8 mb-4">
-            <div class="d-flex align-items-center mb-2">
-              <div class="form-check me-2">
-                <input
-                  id="selectAll"
-                  class="form-check-input"
-                  type="checkbox"
-                />
-              </div>
-              <div class="fs-sm text-muted">Select All</div>
+  <main class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Your Cart</h2>
+      <div class="row">
+        <div class="col-lg-8 mb-4">
+          <div class="d-flex align-items-center mb-2">
+            <div class="form-check me-2">
+              <input id="selectAll" class="form-check-input" type="checkbox" />
             </div>
-            <div id="cartList" class="cart-list">
-              <!-- cart item -->
-              <div
-                class="cart-item d-flex align-items-center p-3 rounded-3 mb-3"
-                data-id="1"
-              >
-                <div class="cart-media me-3">
-                  <img
-                    src="images/wedding dress.jpg"
-                    alt="Elegant Wedding Dress"
-                  />
-                </div>
-                <div class="flex-fill">
-                  <h5 class="mb-1">Elegant Wedding Dress</h5>
-                  <div class="meta text-muted mb-2">Size: S • Color: Ivory</div>
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="price">$200.00</div>
-                    <div class="quantity">
-                      <label class="visually-hidden">Quantity</label>
-                      <input
-                        class="form-control form-control-sm qty qty-input"
-                        type="number"
-                        min="1"
-                        value="1"
-                      />
-                    </div>
-                    <div class="subtotal ms-auto fw-bold">$200.00</div>
-                    <button class="btn btn-outline-light btn-sm ms-2">
-                      Remove
-                    </button>
-                  </div>
-                </div>
+            <div class="fs-sm text-muted">Select All</div>
+          </div>
+          <div id="cartList" class="cart-list">
+            <!-- cart item -->
+            <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3" data-id="1">
+              <div class="cart-media me-3">
+                <img src="images/wedding dress.jpg" alt="Elegant Wedding Dress" />
               </div>
-
-              <!-- cart item -->
-              <div
-                class="cart-item d-flex align-items-center p-3 rounded-3 mb-3"
-                data-id="2"
-              >
-                <div class="cart-media me-3">
-                  <img
-                    src="images/Pretty ball gown wedding dresses.jpg"
-                    alt="Pretty Ball Gown"
-                  />
-                </div>
-                <div class="flex-fill">
-                  <h5 class="mb-1">Pretty Ball Gown</h5>
-                  <div class="meta text-muted mb-2">Size: M • Color: White</div>
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="price">$150.00</div>
-                    <div class="quantity">
-                      <label class="visually-hidden">Quantity</label>
-                      <input
-                        class="form-control form-control-sm qty qty-input"
-                        type="number"
-                        min="1"
-                        value="2"
-                      />
-                    </div>
-                    <div class="subtotal ms-auto fw-bold">$300.00</div>
-                    <button class="btn btn-outline-light btn-sm ms-2">
-                      Remove
-                    </button>
+              <div class="flex-fill">
+                <h5 class="mb-1">Elegant Wedding Dress</h5>
+                <div class="meta text-muted mb-2">Size: S • Color: Ivory</div>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="price">$200.00</div>
+                  <div class="quantity">
+                    <label class="visually-hidden">Quantity</label>
+                    <input class="form-control form-control-sm qty qty-input" type="number" min="1" value="1" />
                   </div>
-                </div>
-              </div>
-
-              <!-- cart item -->
-              <div
-                class="cart-item d-flex align-items-center p-3 rounded-3 mb-3"
-                data-id="3"
-              >
-                <div class="cart-media me-3">
-                  <img
-                    src="images/Groom Wear For Indian Wedding Indian Wedding Sherwani For Groom.jpg"
-                    alt="Groom Sherwani"
-                  />
-                </div>
-                <div class="flex-fill">
-                  <h5 class="mb-1">Groom Sherwani</h5>
-                  <div class="meta text-muted mb-2">Size: L • Color: Gold</div>
-                  <div class="d-flex align-items-center gap-3">
-                    <div class="price">$199.00</div>
-                    <div class="quantity">
-                      <label class="visually-hidden">Quantity</label>
-                      <input
-                        class="form-control form-control-sm qty qty-input"
-                        type="number"
-                        min="1"
-                        value="1"
-                      />
-                    </div>
-                    <div class="subtotal ms-auto fw-bold">$199.00</div>
-                    <button class="btn btn-outline-light btn-sm ms-2">
-                      Remove
-                    </button>
-                  </div>
+                  <div class="subtotal ms-auto fw-bold">$200.00</div>
+                  <button class="btn btn-outline-light btn-sm ms-2">
+                    Remove
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="mt-3">
-              <a href="/products.html" class="btn btn-outline-light btn-sm"
-                >Continue Shopping</a
-              >
+
+            <!-- cart item -->
+            <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3" data-id="2">
+              <div class="cart-media me-3">
+                <img src="images/Pretty ball gown wedding dresses.jpg" alt="Pretty Ball Gown" />
+              </div>
+              <div class="flex-fill">
+                <h5 class="mb-1">Pretty Ball Gown</h5>
+                <div class="meta text-muted mb-2">Size: M • Color: White</div>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="price">$150.00</div>
+                  <div class="quantity">
+                    <label class="visually-hidden">Quantity</label>
+                    <input class="form-control form-control-sm qty qty-input" type="number" min="1" value="2" />
+                  </div>
+                  <div class="subtotal ms-auto fw-bold">$300.00</div>
+                  <button class="btn btn-outline-light btn-sm ms-2">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- cart item -->
+            <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3" data-id="3">
+              <div class="cart-media me-3">
+                <img src="images/Groom Wear For Indian Wedding Indian Wedding Sherwani For Groom.jpg"
+                  alt="Groom Sherwani" />
+              </div>
+              <div class="flex-fill">
+                <h5 class="mb-1">Groom Sherwani</h5>
+                <div class="meta text-muted mb-2">Size: L • Color: Gold</div>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="price">$199.00</div>
+                  <div class="quantity">
+                    <label class="visually-hidden">Quantity</label>
+                    <input class="form-control form-control-sm qty qty-input" type="number" min="1" value="1" />
+                  </div>
+                  <div class="subtotal ms-auto fw-bold">$199.00</div>
+                  <button class="btn btn-outline-light btn-sm ms-2">
+                    Remove
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-
-          <aside class="col-lg-4">
-            <div class="order-summary p-3 bg-dark rounded-3 text-white">
-              <h4 class="mb-3">Order Summary</h4>
-              <div class="d-flex justify-content-between mb-2">
-                <div>Subtotal</div>
-                <div id="summarySubtotal">$699.00</div>
-              </div>
-              <div class="d-flex justify-content-between mb-2">
-                <div>Estimated Shipping</div>
-                <div id="summaryShipping">$25.00</div>
-              </div>
-              <hr class="border-secondary" />
-              <div class="d-flex justify-content-between fw-bold mb-3">
-                <div>Total</div>
-                <div id="summaryTotal">$724.00</div>
-              </div>
-              <div class="d-grid">
-                <button id="checkoutBtn" class="btn btn-cart">
-                  Proceed to Checkout
-                </button>
-              </div>
-            </div>
-          </aside>
+          <div class="mt-3">
+            <a href="/products.html" class="btn btn-outline-light btn-sm">Continue Shopping</a>
+          </div>
         </div>
+
+        <aside class="col-lg-4">
+          <div class="order-summary p-3 bg-dark rounded-3 text-white">
+            <h4 class="mb-3">Order Summary</h4>
+            <div class="d-flex justify-content-between mb-2">
+              <div>Subtotal</div>
+              <div id="summarySubtotal">$699.00</div>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <div>Estimated Shipping</div>
+              <div id="summaryShipping">$25.00</div>
+            </div>
+            <hr class="border-secondary" />
+            <div class="d-flex justify-content-between fw-bold mb-3">
+              <div>Total</div>
+              <div id="summaryTotal">$724.00</div>
+            </div>
+            <div class="d-grid">
+              <button id="checkoutBtn" class="btn btn-cart">
+                Proceed to Checkout
+              </button>
+            </div>
+          </div>
+        </aside>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <footer class="bg-dark text-white text-center py-3">
-      <p class="mb-0">
-        © 2025 <span>Pro</span>mise | Designed for loving couple
-      </p>
-    </footer>
+  <footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">
+      © 2025 <span>Pro</span>mise | Designed for loving couple
+    </p>
+  </footer>
 
-    <!-- toast container (toasts inserted here) -->
-    <div id="toastContainer"></div>
-    <script src="scripts/cart.js" defer></script>
-  </body>
+  <!-- toast container (toasts inserted here) -->
+  <div id="toastContainer"></div>
+  <script src="scripts/cart.js" defer></script>
+</body>
+
 </html>

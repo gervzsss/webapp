@@ -139,11 +139,9 @@ body {
 }
 
 .product-card {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 15, 15, 0.95),
-    rgba(0, 0, 0, 0.8)
-  );
+  background: linear-gradient(180deg,
+      rgba(15, 15, 15, 0.95),
+      rgba(0, 0, 0, 0.8));
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
@@ -190,18 +188,20 @@ body {
   font-size: 0.9rem;
   color: #cfcfcf;
 }
+
 /* grid and list button */
 .d-flex.gap-2.align-items-center {
   justify-content: center;
   margin-top: 20px;
   border-color: #e74c3c;
 }
+
 #gridViewBtn,
 #listViewBtn {
-  border-radius: 10px; /* make buttons rounded */
-  font-weight: bold; /* bold text */
-  padding: 5px 15px; /* adjust button size */
-  transition: 0.3s ease; /* smooth hover effect */
+  border-radius: 10px;
+  font-weight: bold;
+  padding: 5px 15px;
+  transition: 0.3s ease;
   border-color: #ffc107;
 }
 
@@ -272,11 +272,9 @@ body {
   border-radius: 12px;
   overflow: hidden;
   height: 360px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.01)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.01));
   animation: skeleton-pulse 1.2s ease-in-out infinite;
 }
 
@@ -417,6 +415,7 @@ body {
   max-width: 700;
   font-family: "Great Vibes";
 }
+
 .container .Crafting {
   font-size: 25px;
   max-width: 100;
@@ -441,16 +440,19 @@ body {
   color: #ffdca6;
   font-size: 1.15rem;
 }
+
 .py-5 .story {
   color: #eee;
   max-width: bold;
 }
+
 .process {
   color: #eee;
   font-weight: bolder;
   font-size: 30px;
   font-family: sans-serif;
 }
+
 .py-5 ul li {
   color: #eee;
 }
@@ -471,6 +473,7 @@ body {
   min-height: 120px;
   color: #cfcfcf;
 }
+
 /* social media */
 .follow-us {
   position: relative;
@@ -487,6 +490,7 @@ body {
   display: flex;
   flex-direction: row-reverse;
 }
+
 .social-menu ul {
   display: flex;
   justify-content: center;
@@ -497,6 +501,7 @@ body {
   list-style: none;
   margin: 0 15px;
 }
+
 .social-menu ul .fa-brands {
   font-size: 30px;
   line-height: 40px;
@@ -512,22 +517,28 @@ body {
   text-align: center;
   border-radius: 50px;
   animation: animate 1s ease-in-out infinite alternate;
-  margin-top: 40px; /* map palce holder */
+  margin-top: 40px;
+  /* map palce holder */
   transition: 0.6s;
   box-shadow: 0 5px 4px rgba(0, 0, 0, 0.5);
 }
+
 .social-menu ul li a:hover {
   transform: translate(0, -10px);
 }
+
 .social-menu ul .fa-facebook {
   color: white;
 }
+
 .social-menu ul li:nth-child(1) a:hover {
   background-color: #1877f2;
 }
+
 .social-menu ul li:nth-child(2) a:hover {
   background-color: #e4405f;
 }
+
 .social-menu ul li:nth-child(3) a:hover {
   background-color: purple;
 }
@@ -563,11 +574,9 @@ body {
 
 /* Cart page styles */
 .cart-list .cart-item {
-  background: linear-gradient(
-    180deg,
-    rgba(20, 20, 20, 0.85),
-    rgba(8, 8, 8, 0.7)
-  );
+  background: linear-gradient(180deg,
+      rgba(20, 20, 20, 0.85),
+      rgba(8, 8, 8, 0.7));
 }
 
 .cart-item .cart-media img {
@@ -585,11 +594,9 @@ body {
 }
 
 .order-summary {
-  background: linear-gradient(
-    180deg,
-    rgba(13, 13, 13, 0.95),
-    rgba(4, 4, 4, 0.9)
-  );
+  background: linear-gradient(180deg,
+      rgba(13, 13, 13, 0.95),
+      rgba(4, 4, 4, 0.9));
   border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
@@ -654,11 +661,9 @@ body {
 .toast-notice {
   pointer-events: auto;
   display: inline-block;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 140, 0, 0.98),
-    rgba(255, 193, 7, 0.98)
-  );
+  background: linear-gradient(45deg,
+      rgba(255, 140, 0, 0.98),
+      rgba(255, 193, 7, 0.98));
   color: #111;
   padding: 0.6rem 0.9rem;
   border-radius: 8px;
