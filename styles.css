@@ -129,6 +129,61 @@ body {
   color: #ff8c00;
 }
 
+/* Cart badge (top-right of cart icon) */
+.cart-link {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: linear-gradient(45deg, #ff6a00, #ffc107);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(255, 140, 0, 0.28);
+  transform-origin: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 260ms cubic-bezier(.2, .9, .3, 1), opacity 220ms ease, box-shadow 220ms ease;
+}
+
+.cart-badge.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cart-badge.pulse {
+  animation: cart-badge-pulse 420ms ease;
+}
+
+@keyframes cart-badge-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 6px 18px rgba(255, 140, 0, 0.28);
+  }
+
+  40% {
+    transform: scale(1.18);
+    box-shadow: 0 10px 26px rgba(255, 140, 0, 0.5);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 6px 18px rgba(255, 140, 0, 0.28);
+  }
+}
+
 /* Products page additions */
 /* Grid + product card */
 .products-grid {
@@ -139,11 +194,9 @@ body {
 }
 
 .product-card {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 15, 15, 0.95),
-    rgba(0, 0, 0, 0.8)
-  );
+  background: linear-gradient(180deg,
+      rgba(15, 15, 15, 0.95),
+      rgba(0, 0, 0, 0.8));
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
@@ -190,18 +243,20 @@ body {
   font-size: 0.9rem;
   color: #cfcfcf;
 }
+
 /* grid and list button */
 .d-flex.gap-2.align-items-center {
   justify-content: center;
   margin-top: 20px;
   border-color: #e74c3c;
 }
+
 #gridViewBtn,
 #listViewBtn {
-  border-radius: 10px; /* make buttons rounded */
-  font-weight: bold; /* bold text */
-  padding: 5px 15px; /* adjust button size */
-  transition: 0.3s ease; /* smooth hover effect */
+  border-radius: 10px;
+  font-weight: bold;
+  padding: 5px 15px;
+  transition: 0.3s ease;
   border-color: #ffc107;
 }
 
@@ -272,11 +327,9 @@ body {
   border-radius: 12px;
   overflow: hidden;
   height: 360px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.01)
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.01));
   animation: skeleton-pulse 1.2s ease-in-out infinite;
 }
 
@@ -417,6 +470,7 @@ body {
   max-width: 700;
   font-family: "Great Vibes";
 }
+
 .container .Crafting {
   font-size: 25px;
   max-width: 100;
@@ -441,16 +495,19 @@ body {
   color: #ffdca6;
   font-size: 1.15rem;
 }
+
 .py-5 .story {
   color: #eee;
   max-width: bold;
 }
+
 .process {
   color: #eee;
   font-weight: bolder;
   font-size: 30px;
   font-family: sans-serif;
 }
+
 .py-5 ul li {
   color: #eee;
 }
@@ -471,6 +528,73 @@ body {
   min-height: 120px;
   color: #cfcfcf;
 }
+
+/* Responsive map image inside about page */
+.map-placeholder img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 767px) {
+  .map-placeholder img {
+    max-height: 220px;
+  }
+}
+
+/* Lightweight image lightbox */
+.map-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4000;
+  padding: 1.25rem;
+  /* start hidden but present so we can animate opacity/transform */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 320ms ease, visibility 320ms ease;
+}
+
+.map-lightbox.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.map-lightbox img {
+  max-width: 100%;
+  max-height: 92vh;
+  border-radius: 6px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.7);
+  transform: scale(0.96);
+  transition: transform 360ms cubic-bezier(.2, .9, .3, 1), opacity 320ms ease;
+  opacity: 0;
+}
+
+.map-lightbox.open img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.map-lightbox .close-x {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
 /* social media */
 .follow-us {
   position: relative;
@@ -487,6 +611,7 @@ body {
   display: flex;
   flex-direction: row-reverse;
 }
+
 .social-menu ul {
   display: flex;
   justify-content: center;
@@ -497,6 +622,7 @@ body {
   list-style: none;
   margin: 0 15px;
 }
+
 .social-menu ul .fa-brands {
   font-size: 30px;
   line-height: 40px;
@@ -512,22 +638,28 @@ body {
   text-align: center;
   border-radius: 50px;
   animation: animate 1s ease-in-out infinite alternate;
-  margin-top: 40px; /* map palce holder */
+  margin-top: 40px;
+  /* map palce holder */
   transition: 0.6s;
   box-shadow: 0 5px 4px rgba(0, 0, 0, 0.5);
 }
+
 .social-menu ul li a:hover {
   transform: translate(0, -10px);
 }
+
 .social-menu ul .fa-facebook {
   color: white;
 }
+
 .social-menu ul li:nth-child(1) a:hover {
   background-color: #1877f2;
 }
+
 .social-menu ul li:nth-child(2) a:hover {
   background-color: #e4405f;
 }
+
 .social-menu ul li:nth-child(3) a:hover {
   background-color: purple;
 }
@@ -563,11 +695,9 @@ body {
 
 /* Cart page styles */
 .cart-list .cart-item {
-  background: linear-gradient(
-    180deg,
-    rgba(20, 20, 20, 0.85),
-    rgba(8, 8, 8, 0.7)
-  );
+  background: linear-gradient(180deg,
+      rgba(20, 20, 20, 0.85),
+      rgba(8, 8, 8, 0.7));
 }
 
 .cart-item .cart-media img {
@@ -585,11 +715,9 @@ body {
 }
 
 .order-summary {
-  background: linear-gradient(
-    180deg,
-    rgba(13, 13, 13, 0.95),
-    rgba(4, 4, 4, 0.9)
-  );
+  background: linear-gradient(180deg,
+      rgba(13, 13, 13, 0.95),
+      rgba(4, 4, 4, 0.9));
   border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
@@ -654,11 +782,9 @@ body {
 .toast-notice {
   pointer-events: auto;
   display: inline-block;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 140, 0, 0.98),
-    rgba(255, 193, 7, 0.98)
-  );
+  background: linear-gradient(45deg,
+      rgba(255, 140, 0, 0.98),
+      rgba(255, 193, 7, 0.98));
   color: #111;
   padding: 0.6rem 0.9rem;
   border-radius: 8px;
@@ -707,4 +833,73 @@ body {
 .sticky-sidebar h5,
 .sticky-sidebar h6 {
   color: #ff8c00;
+}
+
+/* Home page tweaks: keep layout and image sizing unchanged, improve spacing and add CTA */
+.card-desc {
+  color: #ffdca6;
+  /* soft warm tone for descriptions */
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  min-height: 2.7em;
+  /* keep card heights consistent when descriptions wrap */
+}
+
+/* subtle hover for existing .card and images - only enhance visuals */
+.card.h-100 {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.card.h-100:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 46px rgba(255, 140, 0, 0.14);
+}
+
+/* ensure image hover is gentle and preserves original image size */
+.card-img-top {
+  transition: transform 420ms ease, filter 320ms ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.03);
+  filter: brightness(1.02);
+}
+
+/* Go Shopping CTA - centered and visually distinct */
+.btn-go-shopping {
+  display: inline-block;
+  padding: 0.9rem 2.1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111;
+  background: linear-gradient(90deg, #ffb454, #ff8c00);
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 10px 34px rgba(255, 140, 0, 0.24), 0 0 0 0 rgba(255, 140, 0, 0.0);
+  transition: transform 180ms ease, box-shadow 220ms ease;
+}
+
+.btn-go-shopping:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 54px rgba(255, 140, 0, 0.32), 0 0 28px rgba(255, 193, 7, 0.12);
+}
+
+/* subtle focus and keyboard access */
+.btn-go-shopping:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.12);
+}
+
+/* keep CTA centered inside container and responsive */
+.container.text-center>.btn-go-shopping {
+  margin: 0 auto;
+}
+
+/* small screens: slightly smaller paddings */
+@media (max-width: 576px) {
+  .btn-go-shopping {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.98rem;
+  }
 }

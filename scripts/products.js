@@ -1,6 +1,3 @@
-// Lightweight products renderer and UI interactions
-// Features: product array, render grid, search, filters, sort, skeletons, quick-view, wishlist (localStorage)
-
 (function () {
   // sample product data — map to available images in /images
   const PRODUCTS = [
@@ -265,6 +262,8 @@
   }
   function saveCart(cart) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    // notify other parts of the UI that the cart changed
+    try { window.dispatchEvent(new Event('cart:updated')); } catch (e) { }
   }
   function addToCart(p, qty = 1) {
     const cart = loadCart();
