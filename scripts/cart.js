@@ -46,9 +46,9 @@
                 <div class="cart-media me-3"><img src="${item.img}" alt="${item.title}" /></div>
                 <div class="flex-fill">
                     <h5 class="mb-1">${item.title}</h5>
-                    <div class="meta text-muted mb-2">${item.meta}</div>
+                    <div class="meta text-light mb-2">${item.meta}</div>
                     <div class="d-flex align-items-center gap-3">
-                        <div class="price">${formatPrice(item.price)}</div>
+                        <div class="text-light">${formatPrice(item.price)}</div>
                         <div class="quantity">
                             <label class="visually-hidden">Quantity</label>
                             <input class="form-control form-control-sm qty qty-input" type="number" min="1" value="${item.qty}" />
