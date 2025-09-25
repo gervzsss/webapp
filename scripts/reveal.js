@@ -5,10 +5,8 @@
   function reveal() {
     const nodes = Array.from(document.querySelectorAll(selectors.join(', ')));
     nodes.forEach((el, i) => {
-      // start hidden
       el.style.opacity = 0;
       el.style.transform = 'translateY(6px)';
-      // staggered reveal
       setTimeout(() => {
         el.style.transition = 'opacity .6s ease, transform .6s ease';
         el.style.opacity = 1;

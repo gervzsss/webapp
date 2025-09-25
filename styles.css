@@ -843,7 +843,6 @@ body {
 /* Home page tweaks: keep layout and image sizing unchanged, improve spacing and add CTA */
 .card-desc {
   color: #ffdca6;
-  /* soft warm tone for descriptions */
   margin-top: 0.5rem;
   font-size: 0.95rem;
   line-height: 1.35;
@@ -970,4 +969,54 @@ body {
 .navbar-toggler:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.12);
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: max-height 360ms cubic-bezier(.2, .9, .3, 1),
+      transform 320ms cubic-bezier(.2, .9, .3, 1),
+      opacity 260ms ease;
+  }
+
+  /* anchor the collapse panel under the navbar and align with container */
+  .navbar-collapse.show {
+    position: absolute;
+    top: 70px;
+    /* navbar height */
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    background: rgba(13, 13, 13, 0.98);
+    padding: 0.5rem 0.75rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    max-height: 600px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ensure the nav items are stacked and full width like Bootstrap */
+  .navbar-collapse.show .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: center;
+    /* center items horizontally */
+  }
+
+  .navbar-collapse.show .nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    text-align: center;
+    /* center text */
+  }
+
+  /* keep normal flow on larger screens */
+  .navbar-collapse {
+    position: static;
+  }
 }

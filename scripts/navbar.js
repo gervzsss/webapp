@@ -1,6 +1,3 @@
-// Lightweight navbar toggler for the static site
-// Works without Bootstrap JS dependency: toggles the .collapse element
-
 document.addEventListener('DOMContentLoaded', function () {
   const toggler = document.querySelector('.navbar-toggler');
   const collapse = document.querySelector('.navbar-collapse');
