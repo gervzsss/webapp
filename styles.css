@@ -1118,6 +1118,26 @@ body {
     border-left-color 0.22s ease;
 }
 
+/* selection highlight when item is selected (or aria-checked=true) */
+.cart-item[aria-checked="true"],
+.cart-item.selected {
+  box-shadow: 0 18px 46px rgba(255, 140, 0, 0.12);
+  border-left: 4px solid rgba(255, 140, 0, 0.18);
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.98), rgba(8, 8, 8, 0.85));
+}
+
+/* make the container focusable and show focus ring for keyboard users */
+.cart-item:focus {
+  outline: none;
+  box-shadow: 0 10px 30px rgba(255, 140, 0, 0.12);
+  border-left: 4px solid rgba(255, 140, 0, 0.12);
+}
+
+/* hover visual hint for clickable container */
+.cart-item:hover {
+  cursor: pointer;
+}
+
 /* Sidebar filter specific adjustments to ensure checkboxes and labels align */
 .sticky-sidebar .form-check {
   display: flex;

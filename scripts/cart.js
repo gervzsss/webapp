@@ -40,7 +40,7 @@
       el.className = 'cart-item d-flex align-items-center p-3 rounded-3 mb-3';
       el.dataset.id = item.id;
 
-    el.innerHTML = `
+      el.innerHTML = `
         <div class="form-check">
           <input class="form-check-input select-item" type="checkbox" />
         </div>
@@ -256,8 +256,42 @@
 
     // selection checkboxes
     document.querySelectorAll('.select-item').forEach(chk => chk.addEventListener('change', (e) => {
+      // keep aria and selected class in sync
+      const itemEl = chk.closest('.cart-item');
+      if (itemEl) {
+        itemEl.setAttribute('aria-checked', chk.checked ? 'true' : 'false');
+      }
       updateSelectionSummary();
     }));
+
+    // make the entire cart-item clickable and keyboard-accessible to toggle selection
+    document.querySelectorAll('.cart-item').forEach(itemEl => {
+      // ensure keyboard focusable and announceable as a checkbox
+      itemEl.tabIndex = 0;
+      itemEl.setAttribute('role', 'checkbox');
+      const chk = itemEl.querySelector('.select-item');
+      if (chk) itemEl.setAttribute('aria-checked', chk.checked ? 'true' : 'false');
+
+      // click handler toggles selection unless an interactive control was the target
+      itemEl.addEventListener('click', (e) => {
+        // ignore clicks on form controls or buttons so normal interactions still work
+        if (e.target.closest('input, button, a, label, select, textarea')) return;
+        if (!chk) return;
+        chk.checked = !chk.checked;
+        chk.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+
+      // keyboard (space/enter) toggles selection
+      itemEl.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') {
+          // prevent page scroll on space
+          e.preventDefault();
+          if (!chk) return;
+          chk.checked = !chk.checked;
+          chk.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
+    });
 
     // select all checkbox
     const selectAll = document.getElementById('selectAll');
