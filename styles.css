@@ -664,6 +664,73 @@ body {
   background-color: purple;
 }
 
+/* Mobile: center and evenly space social icons */
+@media (max-width: 767px) {
+  .follow-us {
+    top: 8px;
+    /* small nudge for mobile spacing */
+    margin-bottom: 8px;
+  }
+
+  /* Reset desktop positioning that caused misalignment on small screens */
+  .social-menu {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  .social-menu ul {
+    flex-direction: row;
+    gap: 18px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .social-menu ul li {
+    margin: 0;
+  }
+
+  .social-menu ul li a {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    /* remove desktop top margin that pushed icons around */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+  }
+
+  .social-menu ul .fa-brands {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  /* If viewport is very narrow, stack the icons */
+  /* Ensure icons remain horizontal on very small screens; allow wrapping instead of forcing vertical stack */
+  @media (max-width: 360px) {
+    .social-menu ul {
+      flex-direction: row;
+      /* keep row layout */
+      gap: 12px;
+      flex-wrap: wrap;
+      /* allow items to wrap to a new line when necessary */
+      justify-content: center;
+    }
+
+    .social-menu ul li a {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+
 /* contact form */
 .is-invalid {
   border-color: #e74c3c !important;
@@ -767,6 +834,97 @@ body {
 
   .order-summary {
     margin-top: 1rem;
+  }
+}
+
+/* Cart: improve mobile layout for cart items */
+@media (max-width: 767px) {
+
+  /* make each cart row more compact and wrap content cleanly */
+  .cart-item {
+    display: flex !important;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  /* checkbox stays compact */
+  .cart-item .form-check {
+    flex: 0 0 auto;
+    margin-right: 8px;
+    margin-top: 6px;
+  }
+
+  /* media (thumbnail) fixed size on mobile */
+  .cart-media {
+    flex: 0 0 92px;
+    width: 92px;
+    height: 92px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .cart-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* details column grows and can shrink to avoid overflow */
+  .cart-item .flex-fill {
+    flex: 1 1 auto;
+    min-width: 0;
+    /* allow text truncation/wrapping */
+  }
+
+  .cart-item .flex-fill h5 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    color: #ff8c00;
+  }
+
+  /* inner controls wrap when needed */
+  .cart-item .flex-fill .d-flex {
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  /* quantity input stays compact */
+  .cart-item .qty-input {
+    width: 64px;
+  }
+
+  /* subtotal and remove button move to the end of the row but will wrap beneath on very narrow screens */
+  .cart-item .subtotal {
+    order: 3;
+    margin-left: auto;
+    color: #ff8c00;
+  }
+
+  .cart-item .btn-remove {
+    order: 4;
+    margin-left: 8px;
+    flex: 0 0 auto;
+  }
+
+  /* ensure the order-summary stays visible and stacked under cart list on mobile */
+  aside.col-lg-4 {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .cart-media {
+    flex: 0 0 76px;
+    width: 76px;
+    height: 76px;
+  }
+
+  .cart-item .qty-input {
+    width: 56px;
   }
 }
 
