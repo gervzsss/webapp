@@ -3,6 +3,7 @@
   // cart prototype with persistence in localStorage
   const STORAGE_KEY = 'prototype_cart_v1';
   const shipping = 25.00;
+  let lastTotalString = null;
 
   const sample = [
     { id: 1, title: 'Elegant Wedding Dress', price: 200.00, qty: 1, img: 'images/wedding dress.jpg', meta: 'Size: S • Color: Ivory' },
@@ -39,25 +40,27 @@
       el.className = 'cart-item d-flex align-items-center p-3 rounded-3 mb-3';
       el.dataset.id = item.id;
 
-      el.innerHTML = `
-                <div class="form-check">
-                    <input class="form-check-input select-item" type="checkbox" />
-                </div>
-                <div class="cart-media me-3"><img src="${item.img}" alt="${item.title}" /></div>
-                <div class="flex-fill">
-                    <h5 class="mb-1">${item.title}</h5>
-                    <div class="meta text-light mb-2">${item.meta}</div>
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="text-light">${formatPrice(item.price)}</div>
-                        <div class="quantity">
-                            <label class="visually-hidden">Quantity</label>
-                            <input class="form-control form-control-sm qty qty-input" type="number" min="1" value="${item.qty}" />
-                        </div>
-                        <div class="subtotal ms-auto fw-bold">${formatPrice(item.price * item.qty)}</div>
-                        <button class="btn btn-outline-light btn-sm ms-2 btn-remove">Remove</button>
-                    </div>
-                </div>
-            `;
+    el.innerHTML = `
+        <div class="form-check">
+          <input class="form-check-input select-item" type="checkbox" />
+        </div>
+        <div class="cart-media me-3"><img src="${item.img}" alt="${item.title}" /></div>
+        <div class="flex-fill">
+          <h5 class="mb-1">${item.title}</h5>
+          <div class="meta text-light mb-2">${item.meta}</div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="text-light">${formatPrice(item.price)}</div>
+            <div class="quantity qty-control d-flex align-items-center">
+              <button class="btn btn-qty btn-decrease" type="button" aria-label="Decrease">−</button>
+              <label class="visually-hidden">Quantity</label>
+              <input class="form-control form-control-sm qty qty-input text-center" type="number" min="1" value="${item.qty}" />
+              <button class="btn btn-qty btn-increase" type="button" aria-label="Increase">+</button>
+            </div>
+            <div class="subtotal ms-auto fw-bold">${formatPrice(item.price * item.qty)}</div>
+            <button class="btn btn-outline-light btn-sm ms-2 btn-remove">Remove</button>
+          </div>
+        </div>
+      `;
 
       cartList.appendChild(el);
     });
@@ -144,22 +147,93 @@
 
   function wireUI() {
     // quantity changes
+    // input changes
     document.querySelectorAll('.qty').forEach(inp => {
       inp.addEventListener('input', (e) => {
         const itemEl = e.target.closest('.cart-item');
         const id = Number(itemEl.dataset.id);
         let cart = loadCart();
         const idx = cart.findIndex(c => c.id === id);
-        const val = Math.max(1, Number(e.target.value) || 1);
+        const val = Math.max(1, Math.floor(Number(e.target.value) || 1));
+        e.target.value = val; // sanitize
         if (idx > -1) cart[idx].qty = val;
         saveCart(cart);
         // update subtotal for this row
         const price = cart[idx].price;
         itemEl.querySelector('.subtotal').textContent = formatPrice(price * val);
         recalc();
+        flashTotalsIfChanged();
         updateSelectionSummary();
       });
     });
+
+    // +/- buttons
+    document.querySelectorAll('.btn-decrease').forEach(btn => btn.addEventListener('click', (e) => {
+      const itemEl = e.target.closest('.cart-item');
+      const input = itemEl.querySelector('.qty');
+      const cur = Math.max(1, Number(input.value) || 1);
+      const next = Math.max(1, cur - 1);
+      input.value = next;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }));
+
+    document.querySelectorAll('.btn-increase').forEach(btn => btn.addEventListener('click', (e) => {
+      const itemEl = e.target.closest('.cart-item');
+      const input = itemEl.querySelector('.qty');
+      const cur = Math.max(1, Number(input.value) || 1);
+      const next = cur + 1;
+      input.value = next;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }));
+
+    // press-and-hold support (mouse + touch) for continuous increment/decrement
+    function attachHoldRepeater(btn, step) {
+      let holdTimeout = null;
+      let holdInterval = null;
+      const INITIAL_DELAY = 420; // ms before repeating starts
+      const REPEAT_RATE = 120; // ms between repeats
+
+      function startHold() {
+        // start repeating after initial delay
+        holdTimeout = setTimeout(() => {
+          // first tick immediately when repeating starts
+          const itemEl = btn.closest('.cart-item');
+          const input = itemEl.querySelector('.qty');
+          const cur = Math.max(1, Number(input.value) || 1);
+          const next = Math.max(1, cur + step);
+          input.value = next;
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+
+          holdInterval = setInterval(() => {
+            const itemEl2 = btn.closest('.cart-item');
+            const input2 = itemEl2.querySelector('.qty');
+            const cur2 = Math.max(1, Number(input2.value) || 1);
+            const next2 = Math.max(1, cur2 + step);
+            input2.value = next2;
+            input2.dispatchEvent(new Event('input', { bubbles: true }));
+          }, REPEAT_RATE);
+        }, INITIAL_DELAY);
+      }
+
+      function stopHold() {
+        if (holdTimeout) { clearTimeout(holdTimeout); holdTimeout = null; }
+        if (holdInterval) { clearInterval(holdInterval); holdInterval = null; }
+      }
+
+      // mouse
+      btn.addEventListener('mousedown', (e) => { if (e.button === 0) startHold(); });
+      btn.addEventListener('mouseup', stopHold);
+      btn.addEventListener('mouseleave', stopHold);
+
+      // touch
+      btn.addEventListener('touchstart', (e) => { startHold(); }, { passive: true });
+      btn.addEventListener('touchend', stopHold);
+      btn.addEventListener('touchcancel', stopHold);
+    }
+
+    // attach to existing qty buttons
+    document.querySelectorAll('.btn-decrease').forEach(btn => attachHoldRepeater(btn, -1));
+    document.querySelectorAll('.btn-increase').forEach(btn => attachHoldRepeater(btn, +1));
 
     // remove buttons
     document.querySelectorAll('.btn-remove').forEach(btn => btn.addEventListener('click', (e) => {
@@ -194,6 +268,20 @@
         updateSelectionSummary();
       });
     }
+  }
+
+  // brief flash if total string changed
+  function flashTotalsIfChanged() {
+    const current = summaryTotal ? summaryTotal.textContent : null;
+    if (!current) return;
+    if (lastTotalString && lastTotalString !== current) {
+      const container = document.querySelector('.order-summary');
+      if (container) {
+        container.classList.add('summary-flash');
+        setTimeout(() => container.classList.remove('summary-flash'), 520);
+      }
+    }
+    lastTotalString = current;
   }
 
   // simple modal (DOM-inserted)

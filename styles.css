@@ -928,9 +928,152 @@ body {
   }
 }
 
+/* Very narrow screens: stack cart item content vertically for clear layout */
+@media (max-width: 360px) {
+  .cart-item {
+    flex-direction: column !important;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 12px;
+  }
+
+  .cart-item .form-check {
+    order: 1;
+    margin: 0 0 6px 0;
+    align-self: flex-start;
+  }
+
+  .cart-media {
+    order: 2;
+    margin: 0 auto;
+    width: 84px;
+    height: 84px;
+    flex: 0 0 84px;
+  }
+
+  .cart-item .flex-fill {
+    order: 3;
+    width: 100%;
+  }
+
+  .cart-item .flex-fill h5 {
+    margin-bottom: 6px;
+  }
+
+  .cart-item .flex-fill .d-flex {
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .cart-item .qty-control {
+    order: 1;
+    margin-left: 0;
+  }
+
+  .cart-item .subtotal {
+    order: 4;
+    margin-left: 0;
+    margin-top: 8px;
+    color: #ff8c00;
+    font-weight: 700;
+  }
+
+  .cart-item .btn-remove {
+    order: 5;
+    margin: 8px auto 0;
+    display: block;
+  }
+
+  /* tighten spacing in the order-summary area so it's visible after the list */
+  aside.col-lg-4 {
+    margin-top: 1rem;
+  }
+}
+
 /* Cart input sizing moved from inline styles */
 .qty-input {
   width: 72px;
+}
+
+/* Quantity control buttons + styles */
+.qty-control {
+  background: transparent;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.btn-qty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 1.05rem;
+  line-height: 1;
+  padding: 0;
+  transition: transform 160ms ease, box-shadow 180ms ease, background-color 160ms ease;
+  cursor: pointer;
+}
+
+.btn-qty:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 26px rgba(255, 140, 0, 0.12);
+  background: linear-gradient(90deg, #ff8c00, #ffc107, #ffb454);
+  color: #111;
+}
+
+.btn-qty:active,
+.btn-qty.pressed {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 6px 18px rgba(255, 140, 0, 0.14);
+}
+
+/* increase touch target on small screens */
+@media (max-width: 767px) {
+  .btn-qty {
+    width: 40px;
+    height: 40px;
+  }
+
+  .qty-control .qty-input {
+    width: 64px;
+    min-height: 40px;
+  }
+}
+
+.qty-control .qty-input {
+  width: 56px;
+  margin: 0 6px;
+  min-height: 34px;
+  border-radius: 6px;
+}
+
+/* summary flash: gentle glow/fade when totals change */
+.order-summary.summary-flash {
+  animation: summary-flash 520ms ease;
+}
+
+@keyframes summary-flash {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 140, 0, 0);
+    transform: translateY(0);
+  }
+
+  30% {
+    box-shadow: 0 6px 26px rgba(255, 140, 0, 0.18);
+    transform: translateY(-4px);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(255, 140, 0, 0);
+    transform: translateY(0);
+  }
 }
 
 /* Toast container and toast styles (no inline styles) */
