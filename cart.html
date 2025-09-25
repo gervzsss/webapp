@@ -43,78 +43,13 @@
             <div class="form-check me-2">
               <input id="selectAll" class="form-check-input" type="checkbox" />
             </div>
-            <div class="fs-sm text-muted">Select All</div>
+            <div class="fs-sm text-light">Select All</div>
           </div>
           <div id="cartList" class="cart-list">
-            <!-- cart item -->
-            <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3" data-id="1">
-              <div class="cart-media me-3">
-                <img src="images/wedding dress.jpg" alt="Elegant Wedding Dress" />
-              </div>
-              <div class="flex-fill">
-                <h5 class="mb-1">Elegant Wedding Dress</h5>
-                <div class="meta text-muted mb-2">Size: S • Color: Ivory</div>
-                <div class="d-flex align-items-center gap-3">
-                  <div class="price">$200.00</div>
-                  <div class="quantity">
-                    <label class="visually-hidden">Quantity</label>
-                    <input class="form-control form-control-sm qty qty-input" type="number" min="1" value="1" />
-                  </div>
-                  <div class="subtotal ms-auto fw-bold">$200.00</div>
-                  <button class="btn btn-outline-light btn-sm ms-2">
-                    Remove
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- cart item -->
-            <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3" data-id="2">
-              <div class="cart-media me-3">
-                <img src="images/Pretty ball gown wedding dresses.jpg" alt="Pretty Ball Gown" />
-              </div>
-              <div class="flex-fill">
-                <h5 class="mb-1">Pretty Ball Gown</h5>
-                <div class="meta text-muted mb-2">Size: M • Color: White</div>
-                <div class="d-flex align-items-center gap-3">
-                  <div class="price">$150.00</div>
-                  <div class="quantity">
-                    <label class="visually-hidden">Quantity</label>
-                    <input class="form-control form-control-sm qty qty-input" type="number" min="1" value="2" />
-                  </div>
-                  <div class="subtotal ms-auto fw-bold">$300.00</div>
-                  <button class="btn btn-outline-light btn-sm ms-2">
-                    Remove
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- cart item -->
-            <div class="cart-item d-flex align-items-center p-3 rounded-3 mb-3" data-id="3">
-              <div class="cart-media me-3">
-                <img src="images/Groom Wear For Indian Wedding Indian Wedding Sherwani For Groom.jpg"
-                  alt="Groom Sherwani" />
-              </div>
-              <div class="flex-fill">
-                <h5 class="mb-1">Groom Sherwani</h5>
-                <div class="meta text-muted mb-2">Size: L • Color: Gold</div>
-                <div class="d-flex align-items-center gap-3">
-                  <div class="price">$199.00</div>
-                  <div class="quantity">
-                    <label class="visually-hidden">Quantity</label>
-                    <input class="form-control form-control-sm qty qty-input" type="number" min="1" value="1" />
-                  </div>
-                  <div class="subtotal ms-auto fw-bold">$199.00</div>
-                  <button class="btn btn-outline-light btn-sm ms-2">
-                    Remove
-                  </button>
-                </div>
-              </div>
-            </div>
+            <!-- Cart items will be dynamically inserted here -->
           </div>
           <div class="mt-3">
-            <a href="/products.html" class="btn btn-outline-light btn-sm">Continue Shopping</a>
+            <a href="/products.html" class="btn btn-go-shopping">Continue Shopping</a>
           </div>
         </div>
 
@@ -155,6 +90,7 @@
   <div id="toastContainer"></div>
   <script src="scripts/cart.js" defer></script>
   <script src="scripts/cart-badge.js" defer></script>
+  <script src="scripts/navbar.js" defer></script>
 </body>
 
 </html>

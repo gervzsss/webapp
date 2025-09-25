@@ -694,6 +694,11 @@ body {
 }
 
 /* Cart page styles */
+.subtotal {
+  color: #ff8c00;
+  font: bold;
+}
+
 .cart-list .cart-item {
   background: linear-gradient(180deg,
       rgba(20, 20, 20, 0.85),
@@ -902,4 +907,67 @@ body {
     padding: 0.7rem 1.2rem;
     font-size: 0.98rem;
   }
+}
+
+/* Navbar toggler animation (hamburger -> X) */
+.navbar-toggler {
+  width: 48px;
+  height: 38px;
+  padding: 6px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #ffd27a;
+  /* match theme */
+  position: relative;
+  transition: background-color 180ms ease;
+}
+
+.navbar-toggler .navbar-toggler-icon::before,
+.navbar-toggler .navbar-toggler-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background-color: inherit;
+  transition: transform 240ms cubic-bezier(.2, .9, .3, 1), top 180ms ease, opacity 160ms ease;
+}
+
+.navbar-toggler .navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.navbar-toggler .navbar-toggler-icon::after {
+  top: 8px;
+}
+
+/* when open, animate into an X */
+.navbar-toggler.open .navbar-toggler-icon {
+  background-color: transparent;
+}
+
+.navbar-toggler.open .navbar-toggler-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.navbar-toggler.open .navbar-toggler-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* small accessibility/focus states */
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.12);
 }

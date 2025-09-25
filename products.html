@@ -37,7 +37,7 @@
 
   <!-- HERO (keeps same background and style as Home) -->
   <header class="text-center text-white py-5 bg-dark"
-    style="background: url('images/background.jpg') center/cover no-repeat">
+    style="background: url('images/background.png') center/cover no-repeat">
     <div class="container">
       <h1 class="display-4">
         <b>Our <span>Products</span></b>
@@ -85,7 +85,7 @@
             <h6 class="mb-2">Price</h6>
             <div class="mb-3">
               <input id="priceRange" type="range" class="form-range" min="0" max="1000" value="1000" />
-              <div class="text-muted">
+              <div class="text-light">
                 Up to: $<span id="priceVal">1000</span>
               </div>
             </div>
@@ -120,7 +120,7 @@
               </button>
             </div>
             <div class="d-flex gap-2 align-items-center">
-              <label class="me-2 text-muted">SORT</label>
+              <label class="text-light">SORT</label>
               <select id="sortSelect" class="form-select form-select-sm">
                 <option value="newest">Newest</option>
                 <option value="popular">Popular</option>
@@ -166,6 +166,7 @@
   <script src="scripts/products.js" defer></script>
   <script src="scripts/reveal.js" defer></script>
   <script src="scripts/cart-badge.js" defer></script>
+  <script src="scripts/navbar.js" defer></script>
 
   <!-- FOOTER (same as home.html) -->
   <footer class="bg-dark text-white text-center py-3">
