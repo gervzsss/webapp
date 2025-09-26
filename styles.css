@@ -300,9 +300,10 @@ body {
 
 .filter-topbar {
   display: none;
-  position: sticky;
-  top: 70px;
-  z-index: 60;
+  /* Remove sticky/fixed positioning so it scrolls with the page */
+  position: static;
+  top: auto;
+  z-index: auto;
   padding: 0.6rem;
   background: rgba(13, 13, 13, 0.95);
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
