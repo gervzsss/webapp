@@ -1128,7 +1128,8 @@ body {
 }
 
 /* make the container focusable and show focus ring for keyboard users */
-.cart-item:focus {
+.cart-item:focus-visible {
+  /* show focus ring only for keyboard users (avoid persistent mouse highlight) */
   outline: none;
   box-shadow: 0 10px 30px rgba(255, 140, 0, 0.12);
   border-left: 4px solid rgba(255, 140, 0, 0.12);
