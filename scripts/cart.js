@@ -89,7 +89,9 @@
 
   // compute totals for only selected items and update the order summary UI + checkout button state
   function updateSelectionSummary() {
-    const selectedEls = Array.from(document.querySelectorAll('.cart-item')).filter(el => el.querySelector('.select-item') && el.querySelector('.select-item').checked);
+    // find all cart items and the ones currently checked
+    const allItems = Array.from(document.querySelectorAll('.cart-item'));
+    const selectedEls = allItems.filter(el => el.querySelector('.select-item') && el.querySelector('.select-item').checked);
     const checkoutBtn = document.getElementById('checkoutBtn');
     // update checkout button label with count
     if (checkoutBtn) {
@@ -97,6 +99,9 @@
       if (selectedEls.length) checkoutBtn.textContent = `${base} (${selectedEls.length} items)`;
       else checkoutBtn.textContent = base;
     }
+    // clear previous selection visual state on all items first
+    allItems.forEach(el => el.classList.remove('selected'));
+
     if (!selectedEls.length) {
       // disable order summary interactions
       document.querySelector('.order-summary').classList.add('disabled');
@@ -104,8 +109,6 @@
       summaryShipping.textContent = '-';
       summaryTotal.textContent = '-';
       if (checkoutBtn) checkoutBtn.disabled = true;
-      // remove selected visual state
-      document.querySelectorAll('.cart-item').forEach(el => el.classList.remove('selected'));
       return;
     }
 
@@ -120,6 +123,7 @@
       const cartItem = cart.find(c => c.id === id);
       if (cartItem) {
         subtotal += cartItem.price * cartItem.qty;
+        // add selected class only for currently checked items
         el.classList.add('selected');
       }
     });
@@ -298,7 +302,14 @@
     if (selectAll) {
       selectAll.addEventListener('change', () => {
         const all = document.querySelectorAll('.select-item');
-        all.forEach(i => i.checked = selectAll.checked);
+        all.forEach(i => {
+          i.checked = selectAll.checked;
+          // dispatch change so the existing change handlers (which update aria-checked and selection UI)
+          // run consistently when programmatically changing the checked state
+          i.dispatchEvent(new Event('change', { bubbles: true }));
+        });
+        // updateSelectionSummary will be called from the dispatched change handlers, but calling once
+        // here is harmless and keeps behavior identical if there are no listeners.
         updateSelectionSummary();
       });
     }
